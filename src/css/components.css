@@ -522,7 +522,65 @@
   margin-top: 1rem;
 }
 
-/* 방명록 (Guestbook) 스타일 */
+/* 방명록 섹션 (Guestbook) 디자인 개선 */
+.feedback-title {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 2rem 0 1rem;
+  color: var(--color-primary);
+}
+
+.guestbook {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: #fafafa;
+  border-top: 4px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.guestbook__form {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.guestbook__form input,
+.guestbook__form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+}
+
+.guestbook__form button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.guestbook__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.guestbook__item {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.guestbook__name { font-weight: bold; }
+.guestbook__date { font-size: 0.85rem; color: #666; margin-left: 0.5rem; }
+.guestbook__msg { margin-top: 0.4rem; white-space: pre-wrap; }
+.guestbook__status { margin-top: 0.5rem; color: var(--color-accent); }
+
 .guestbook {
   margin-top: 2rem;
   padding: 1.5rem;
