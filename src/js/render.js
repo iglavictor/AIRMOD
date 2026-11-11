@@ -30,11 +30,31 @@ export function renderModelCards(container, models, selectedModelId, onSelect) {
     card.setAttribute('aria-checked', model.id === selectedModelId ? 'true' : 'false');
     card.tabIndex = 0;
 
+    // 모델 플랫폼별 기본 안전 이미지 매핑 (사용자 업로드 실사 이미지 우선 적용)
+    let fallbackImg = '/public/assets/default-part.svg';
+    const slugOrPlatform = `${model.slug || ''} ${model.platform || ''} ${model.name || ''}`.toLowerCase();
+    if (slugOrPlatform.includes('m4') || slugOrPlatform.includes('ar-15')) {
+      fallbackImg = '/public/assets/model-m4a1.jpg';
+    } else if (slugOrPlatform.includes('akm') || slugOrPlatform.includes('ak')) {
+      fallbackImg = '/public/assets/model-akm.jpg';
+    } else if (slugOrPlatform.includes('g17') || slugOrPlatform.includes('handgun') || slugOrPlatform.includes('글록') || slugOrPlatform.includes('핸드건')) {
+      fallbackImg = '/public/assets/model-g17.jpg';
+    }
+
     const img = document.createElement('img');
     img.className = 'model-card-img';
-    img.src = model.imageUrl || 'https://via.placeholder.com/150';
+    // 외부 링크(Unsplash 등 잘못된 기존 URL) 대신 사용자가 등록한 고화질 로컬 실사 이미지 우선 채택
+    const isExternalUnsplash = typeof model.imageUrl === 'string' && model.imageUrl.includes('unsplash');
+    img.src = (model.imageUrl && !isExternalUnsplash) ? model.imageUrl : fallbackImg;
     img.alt = model.name;
     img.loading = 'lazy';
+
+    // 이미지 링크 로드 실패 시 로컬 실사 이미지 / SVG 그래픽으로 자동 대체
+    img.onerror = () => {
+      if (img.src !== fallbackImg && !img.src.endsWith(fallbackImg)) {
+        img.src = fallbackImg;
+      }
+    };
 
     const title = document.createElement('div');
     title.className = 'model-card-title';

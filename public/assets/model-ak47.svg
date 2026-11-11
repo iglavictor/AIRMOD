@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="akBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141a17"/>
+      <stop offset="100%" stop-color="#1b241e"/>
+    </linearGradient>
+    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#854d0e"/>
+      <stop offset="50%" stop-color="#a16207"/>
+      <stop offset="100%" stop-color="#713f12"/>
+    </linearGradient>
+    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="400" height="220" fill="url(#akBg)"/>
+
+  <!-- 그리드 라인 -->
+  <path d="M 0,55 L 400,55 M 0,110 L 400,110 M 0,165 L 400,165 M 100,0 L 100,220 M 200,0 L 200,220 M 300,0 L 300,220" 
+        stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+  <!-- 총기 실루엣 (AK-47 택티컬 스타일) -->
+  <g transform="translate(25, 60)">
+    <!-- 고정 개머리판 -->
+    <path d="M 15,40 L 65,46 L 70,68 L 15,80 Z" fill="url(#woodGrad)"/>
+
+    <!-- 몸통 (리시버) -->
+    <path d="M 70,44 L 175,44 L 175,70 L 70,68 Z" fill="url(#metalGrad)"/>
+
+    <!-- 피스톨 그립 -->
+    <path d="M 90,68 L 108,68 L 95,108 L 78,105 Z" fill="url(#woodGrad)"/>
+    <!-- 방아쇠울 & 방아쇠 -->
+    <path d="M 110,68 Q 125,82 135,68" stroke="#334155" stroke-width="2" fill="none"/>
+    <path d="M 122,70 L 120,77" stroke="#10b981" stroke-width="2"/>
+
+    <!-- 특징적인 바나나형 탄창 -->
+    <path d="M 142,70 Q 155,105 130,128 L 112,120 Q 138,98 128,70 Z" fill="#1e293b"/>
+
+    <!-- 가스 블록 & 핸드가드 (원목/택티컬) -->
+    <path d="M 175,46 L 245,46 L 245,68 L 175,68 Z" fill="url(#woodGrad)"/>
+    <rect x="180" y="38" width="60" height="7" rx="1" fill="url(#metalGrad)"/>
+
+    <!-- 총열 (바렐) 및 가스 튜브 -->
+    <rect x="245" y="47" width="85" height="7" fill="url(#metalGrad)"/>
+    <polygon points="315,36 322,36 324,47 313,47" fill="#334155"/>
+
+    <!-- 소염기 (오렌지 칼라파트) -->
+    <polygon points="330,46 345,43 345,55 330,55" fill="#f97316"/>
+  </g>
+
+  <!-- 모델 뱃지 -->
+  <rect x="20" y="16" width="45" height="18" rx="3" fill="rgba(16, 185, 129, 0.2)"/>
+  <text x="42" y="29" fill="#34d399" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">AK</text>
+  <text x="380" y="200" fill="rgba(255,255,255,0.2)" font-family="sans-serif" font-size="12" font-weight="900" text-anchor="end">AK-47 TACTICAL</text>
+</svg>
+

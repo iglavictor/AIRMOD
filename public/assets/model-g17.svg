@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="100%" height="100%">
+  <defs>
+    <linearGradient id="g17Bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#27272a"/>
+    </linearGradient>
+    <linearGradient id="slideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#52525b"/>
+      <stop offset="50%" stop-color="#71717a"/>
+      <stop offset="100%" stop-color="#3f3f46"/>
+    </linearGradient>
+    <linearGradient id="frameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#27272a"/>
+      <stop offset="100%" stop-color="#18181b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="400" height="220" fill="url(#g17Bg)"/>
+
+  <!-- 그리드 라인 -->
+  <path d="M 0,55 L 400,55 M 0,110 L 400,110 M 0,165 L 400,165 M 100,0 L 100,220 M 200,0 L 200,220 M 300,0 L 300,220" 
+        stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+  <!-- 총기 실루엣 (G17 글록 스타일 핸드건) -->
+  <g transform="translate(100, 45)">
+    <!-- 슬라이드 (상부 금속 부품) -->
+    <path d="M 40,35 L 210,35 L 210,65 L 40,65 Z" fill="url(#slideGrad)"/>
+    <!-- 서레이션 (미끄럼 방지 홈) -->
+    <line x1="50" y1="40" x2="50" y2="60" stroke="#27272a" stroke-width="3"/>
+    <line x1="58" y1="40" x2="58" y2="60" stroke="#27272a" stroke-width="3"/>
+    <line x1="66" y1="40" x2="66" y2="60" stroke="#27272a" stroke-width="3"/>
+
+    <!-- 가늠자 & 가늠쇠 -->
+    <rect x="42" y="28" width="6" height="7" fill="#27272a"/>
+    <rect x="200" y="28" width="5" height="7" fill="#27272a"/>
+    <!-- 칼라파트 (오렌지 총구 팁) -->
+    <rect x="210" y="45" width="8" height="15" fill="#f97316"/>
+
+    <!-- 하부 프레임 & 그립 (폴리머 하부) -->
+    <path d="M 40,65 L 205,65 L 195,85 L 145,85 L 120,150 L 70,145 L 90,85 L 40,75 Z" fill="url(#frameGrad)"/>
+
+    <!-- 방아쇠울 & 안전 방아쇠 -->
+    <path d="M 105,75 Q 120,105 145,75" stroke="#3f3f46" stroke-width="3" fill="none"/>
+    <path d="M 125,78 L 122,88" stroke="#ef4444" stroke-width="2.5"/>
+
+    <!-- 언더 레일 (20mm 피카티니) -->
+    <line x1="165" y1="80" x2="195" y2="80" stroke="#52525b" stroke-width="2" stroke-dasharray="3,2"/>
+  </g>
+
+  <!-- 모델 뱃지 -->
+  <rect x="20" y="16" width="65" height="18" rx="3" fill="rgba(249, 115, 22, 0.2)"/>
+  <text x="52" y="29" fill="#fb923c" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">HANDGUN</text>
+  <text x="380" y="200" fill="rgba(255,255,255,0.2)" font-family="sans-serif" font-size="12" font-weight="900" text-anchor="end">G17 9mm GBB</text>
+</svg>
+

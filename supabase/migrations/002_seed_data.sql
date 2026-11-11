@@ -16,7 +16,7 @@ values
     'AR-15',
     350000,
     2500,
-    'https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80',
+    '/public/assets/model-m4.svg',
     true
   ),
   (
@@ -26,7 +26,7 @@ values
     'AK',
     320000,
     3100,
-    'https://images.unsplash.com/photo-1584281722573-982eb98b0fd2?auto=format&fit=crop&w=800&q=80',
+    '/public/assets/model-ak47.svg',
     true
   ),
   (
@@ -36,7 +36,7 @@ values
     'Handgun',
     180000,
     750,
-    'https://images.unsplash.com/photo-1585589074491-3c1bbac1dc42?auto=format&fit=crop&w=800&q=80',
+    '/public/assets/model-g17.svg',
     true
   )
 on conflict (slug) do update set

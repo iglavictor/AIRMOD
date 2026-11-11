@@ -54,29 +54,29 @@ export const MOCK_MODELS = [
     platform: 'AR-15',
     price_krw: 350000,
     weight_grams: 2500,
-    image_url: 'https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=800&q=80',
+    image_url: '/public/assets/model-m4a1.jpg',
     is_active: true
   },
   {
-    id: 'ak47-aeg-002',
-    slug: 'sample-ak47-aeg',
-    name: '[샘플] AK-47 택티컬 전동 에어소프트건',
+    id: 'akm-aeg-002',
+    slug: 'sample-akm-aeg',
+    name: '[샘플] AKM 전동 에어소프트건',
     manufacturer: '가상 택티컬기어',
     platform: 'AK',
     price_krw: 320000,
     weight_grams: 3100,
-    image_url: 'https://images.unsplash.com/photo-1584281722573-982eb98b0fd2?auto=format&fit=crop&w=800&q=80',
+    image_url: '/public/assets/model-akm.jpg',
     is_active: true
   },
   {
     id: 'g17-gbb-003',
     slug: 'sample-g17-gbb',
-    name: '[샘플] G17 가스블로우백 핸드건',
+    name: '[샘플] 글록 17 (G17) 가스블로우백 핸드건',
     manufacturer: '가상 프라임에어소프트',
     platform: 'Handgun',
     price_krw: 180000,
     weight_grams: 750,
-    image_url: 'https://images.unsplash.com/photo-1585589074491-3c1bbac1dc42?auto=format&fit=crop&w=800&q=80',
+    image_url: '/public/assets/model-g17.jpg',
     is_active: true
   }
 ];
@@ -292,7 +292,16 @@ export const MOCK_COMPATIBILITY = [
   { modelId: 'm4-carbine-001', accessoryId: 'acc-tactical-sling', status: 'verified' },
   { modelId: 'm4-carbine-001', accessoryId: 'acc-light-stock', status: 'verified' },
 
-  // AK-47 호환 부품들
+  // AKM 호환 부품들
+  { modelId: 'akm-aeg-002', accessoryId: 'acc-red-dot', status: 'verified' },
+  { modelId: 'akm-aeg-002', accessoryId: 'acc-suppressor-short', status: 'verified' },
+  { modelId: 'akm-aeg-002', accessoryId: 'acc-suppressor-long', status: 'verified' },
+  { modelId: 'akm-aeg-002', accessoryId: 'acc-vertical-grip', status: 'verified' },
+  { modelId: 'akm-aeg-002', accessoryId: 'acc-angled-grip', status: 'verified' },
+  { modelId: 'akm-aeg-002', accessoryId: 'acc-weapon-light', status: 'verified' },
+  { modelId: 'akm-aeg-002', accessoryId: 'acc-tactical-sling', status: 'verified' },
+
+  // 기존 호환성 유지용 (AK-47)
   { modelId: 'ak47-aeg-002', accessoryId: 'acc-red-dot', status: 'verified' },
   { modelId: 'ak47-aeg-002', accessoryId: 'acc-suppressor-short', status: 'verified' },
   { modelId: 'ak47-aeg-002', accessoryId: 'acc-suppressor-long', status: 'verified' },
@@ -308,6 +317,28 @@ export const MOCK_COMPATIBILITY = [
 ];
 
 /**
+ * 모델별 고화질 실사 이미지 및 한국어 표준 명칭 매핑 유틸리티
+ */
+function normalizeModelInfo(item) {
+  const text = `${item.slug || ''} ${item.name || ''} ${item.platform || ''}`.toLowerCase();
+  let imageUrl = item.image_url;
+  let name = item.name;
+
+  if (text.includes('m4') || text.includes('ar-15')) {
+    imageUrl = '/public/assets/model-m4a1.jpg';
+    name = '[샘플] M4A1 카빈 전동 에어소프트건';
+  } else if (text.includes('ak')) {
+    imageUrl = '/public/assets/model-akm.jpg';
+    name = '[샘플] AKM 전동 에어소프트건';
+  } else if (text.includes('g17') || text.includes('글록') || text.includes('handgun') || text.includes('핸드건')) {
+    imageUrl = '/public/assets/model-g17.jpg';
+    name = '[샘플] 글록 17 (G17) 가스블로우백 핸드건';
+  }
+
+  return { imageUrl, name };
+}
+
+/**
  * 기본 모델 목록 조회 (DB 우선, 실패 시 목업 데이터 제공)
  */
 export async function fetchAllModels() {
@@ -320,15 +351,19 @@ export async function fetchAllModels() {
         .order('price_krw', { ascending: true });
 
       if (!error && data && data.length > 0) {
-        return data.map(item => ({
-          id: item.id,
-          name: item.name,
-          manufacturer: item.manufacturer,
-          platform: item.platform,
-          priceKRW: item.price_krw,
-          weightGrams: item.weight_grams,
-          imageUrl: item.image_url
-        }));
+        return data.map(item => {
+          const { imageUrl, name } = normalizeModelInfo(item);
+          return {
+            id: item.id,
+            slug: item.slug,
+            name: name,
+            manufacturer: item.manufacturer,
+            platform: item.platform,
+            priceKRW: item.price_krw,
+            weightGrams: item.weight_grams,
+            imageUrl: imageUrl
+          };
+        });
       }
     } catch (e) {
       console.warn('[DB] Supabase 조회 실패, 가상 데이터로 대체합니다:', e.message);
@@ -338,6 +373,7 @@ export async function fetchAllModels() {
   // 폴백: 목업 데이터 반환
   return MOCK_MODELS.map(item => ({
     id: item.id,
+    slug: item.slug,
     name: item.name,
     manufacturer: item.manufacturer,
     platform: item.platform,
