@@ -1,0 +1,33 @@
+{
+  "name": "airmod",
+  "version": "1.0.0",
+  "description": "AIRMOD — 에어소프트건 외장 모딩 추천 웹서비스",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node dev-server.js",
+    "dev": "node dev-server.js",
+    "vercel:dev": "vercel dev",
+    "lint": "eslint src/ api/ server/",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "build": "node scripts/build.js",
+    "check": "npm run lint && npm run test && npm run build"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "dotenv": "^16.4.7",
+    "openai": "^4.86.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0",
+    "vitest": "^3.0.7"
+  }
+}
+

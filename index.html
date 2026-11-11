@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIRMOD — 에어소프트건 외장 모딩 추천</title>
+  <meta name="description" content="에어소프트건 기본 모델, 환경, 취향, 예산에 맞춘 최적의 외장 액세서리 추천 서비스">
+  
+  <!-- CSS 모듈 연결 -->
+  <link rel="stylesheet" href="./src/css/tokens.css">
+  <link rel="stylesheet" href="./src/css/layout.css">
+  <link rel="stylesheet" href="./src/css/components.css">
+  <link rel="stylesheet" href="./src/css/animations.css">
+</head>
+<body>
+  <!-- 헤더 영역 -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <span class="logo-badge">AIRMOD</span>
+        <h1 class="service-title">에어소프트건 외장 모딩 플래너</h1>
+      </div>
+      <div class="header-actions">
+        <button id="btn-open-presets" class="btn btn-outline" type="button" aria-haspopup="dialog">
+          저장된 프리셋 (<span id="saved-preset-count">0</span>)
+        </button>
+        <button id="btn-reset-all" class="btn btn-ghost text-muted" type="button">초기화</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 콘텐츠 영역 -->
+  <main class="main-content container">
+    <!-- 안내 배너 -->
+    <section class="banner-notice" aria-label="서비스 안내">
+      <p>
+        <strong>안내:</strong> 본 서비스는 <strong>합법적인 에어소프트건 외장 모형 액세서리</strong>의 
+        장착 호환성 및 스타일 추천만을 제공합니다. 발사 성능 개조나 내부 기구 튜닝 정보는 제공하지 않습니다.
+      </p>
+    </section>
+
+    <!-- 2단 레이아웃: 좌측 설정 패널 / 우측 추천 결과 패널 -->
+    <div class="app-layout">
+      <!-- 1. 설정 입력 섹션 (Form) -->
+      <section class="config-section" aria-labelledby="config-heading">
+        <h2 id="config-heading" class="section-title">1. 모딩 조건 설정</h2>
+
+        <form id="modding-form" class="config-form" onsubmit="return false;">
+          <!-- 총기 기본 모델 선택 -->
+          <div class="form-group">
+            <label class="group-label" for="model-list">기본 총기 모델 선택 <span class="required">*</span></label>
+            <div id="model-list" class="model-cards-grid" role="radiogroup" aria-required="true">
+              <!-- 모델 목록이 JS로 동적 렌더링됩니다 -->
+              <div class="loading-box">총기 모델 정보를 불러오는 중...</div>
+            </div>
+          </div>
+
+          <!-- 사용 환경 선택 -->
+          <div class="form-group">
+            <span class="group-label">사용 환경</span>
+            <div class="radio-chip-group" role="radiogroup">
+              <label class="chip-label">
+                <input type="radio" name="environment" value="indoor" checked>
+                <span class="chip-text">실내 CQB</span>
+              </label>
+              <label class="chip-label">
+                <input type="radio" name="environment" value="outdoor">
+                <span class="chip-text">야외 필드</span>
+              </label>
+              <label class="chip-label">
+                <input type="radio" name="environment" value="shooting">
+                <span class="chip-text">타깃 슈팅</span>
+              </label>
+              <label class="chip-label">
+                <input type="radio" name="environment" value="cosplay">
+                <span class="chip-text">전시 / 코스프레</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 모딩 성향 선택 -->
+          <div class="form-group">
+            <span class="group-label">모딩 성향</span>
+            <div class="radio-chip-group" role="radiogroup">
+              <label class="chip-label">
+                <input type="radio" name="style" value="balanced" checked>
+                <span class="chip-text">균형 밸런스</span>
+              </label>
+              <label class="chip-label">
+                <input type="radio" name="style" value="lightweight">
+                <span class="chip-text">경량 기동성</span>
+              </label>
+              <label class="chip-label">
+                <input type="radio" name="style" value="appearance">
+                <span class="chip-text">택티컬 외관</span>
+              </label>
+              <label class="chip-label">
+                <input type="radio" name="style" value="budget">
+                <span class="chip-text">실속 가성비</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 최우선 고려 요소 -->
+          <div class="form-group">
+            <span class="group-label">우선순위</span>
+            <div class="radio-chip-group" role="radiogroup">
+              <label class="chip-label">
+                <input type="radio" name="priority" value="appearance" checked>
+                <span class="chip-text">외관 디자인</span>
+              </label>
+              <label class="chip-label">
+                <input type="radio" name="priority" value="weight">
+                <span class="chip-text">가벼운 무게</span>
+              </label>
+              <label class="chip-label">
+                <input type="radio" name="priority" value="price">
+                <span class="chip-text">낮은 가격</span>
+              </label>
+              <label class="chip-label">
+                <input type="radio" name="priority" value="usability">
+                <span class="chip-text">사용 편의성</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 예산 범위 슬라이더 -->
+          <div class="form-group">
+            <div class="budget-header">
+              <label class="group-label" for="budget-slider">총 예산 (총기 포함)</label>
+              <span id="budget-display" class="budget-value">500,000원</span>
+            </div>
+            <input 
+              type="range" 
+              id="budget-slider" 
+              name="budgetKRW" 
+              min="100000" 
+              max="2000000" 
+              step="50000" 
+              value="500000"
+              class="range-slider"
+            >
+            <div class="range-marks">
+              <span>10만원</span>
+              <span>100만원</span>
+              <span>200만원</span>
+            </div>
+          </div>
+
+          <!-- 추천 실행 버튼 -->
+          <button id="btn-run-recommend" class="btn btn-primary btn-block btn-lg" type="button">
+            맞춤 외장 모딩 추천받기
+          </button>
+        </form>
+      </section>
+
+      <!-- 2. 추천 결과 섹션 -->
+      <section class="result-section" aria-labelledby="result-heading">
+        <h2 id="result-heading" class="section-title">2. 추천 모딩 구성</h2>
+
+        <!-- 초기 비어있는 상태 -->
+        <div id="result-empty" class="result-empty-box">
+          <p class="empty-title">총기 모델과 조건을 선택하고 추천을 받아보세요.</p>
+          <p class="empty-desc">호환성이 검증된 부품 조합과 예상 비용, 중량, 참고 이미지가 표시됩니다.</p>
+        </div>
+
+        <!-- 로딩 인디케이터 -->
+        <div id="result-loading" class="result-loading-box is-hidden" aria-live="polite">
+          <div class="spinner"></div>
+          <p class="loading-text">최적의 호환 부품과 모딩 스타일을 분석 중입니다...</p>
+        </div>
+
+        <!-- 결과 컨텐츠 (추천 완료 시 표시) -->
+        <div id="result-content" class="result-content is-hidden">
+          <!-- 상단 요약 카드 -->
+          <div class="summary-card">
+            <div class="summary-item">
+              <span class="summary-label">예상 총비용</span>
+              <span id="summary-total-price" class="summary-val highlight">0원</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">총 중량</span>
+              <span id="summary-total-weight" class="summary-val">0g (0.00kg)</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">추천 적합도</span>
+              <span id="summary-fit-score" class="summary-val badge-score">0점</span>
+            </div>
+          </div>
+
+          <!-- 추천 이유 및 장단점 카드 -->
+          <div class="explanation-card">
+            <div class="card-header">
+              <h3 class="card-title">추천 사유 및 분석</h3>
+              <span id="explanation-source-badge" class="badge-source">AI 추천</span>
+            </div>
+            <p id="explanation-reason" class="reason-text"></p>
+
+            <div class="pros-cons-grid">
+              <div class="pros-box">
+                <h4 class="pros-title">👍 장점</h4>
+                <ul id="pros-list" class="tag-list"></ul>
+              </div>
+              <div class="cons-box">
+                <h4 class="cons-title">💡 유의점</h4>
+                <ul id="cons-list" class="tag-list"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 장착 부품 목록 및 교체 영역 -->
+          <div class="accessories-card">
+            <div class="card-header">
+              <h3 class="card-title">장착 외장 부품 (<span id="acc-count">0</span>개)</h3>
+              <span class="text-caption">클릭하여 다른 호환 부품으로 교체 가능</span>
+            </div>
+            <div id="recommended-accessories-list" class="accessories-list"></div>
+          </div>
+
+          <!-- 유사 참고 이미지 갤러리 -->
+          <div class="gallery-card">
+            <div class="card-header">
+              <h3 class="card-title">인터넷 유사 참고 이미지</h3>
+            </div>
+            <p id="gallery-disclaimer" class="gallery-notice">
+              유사한 참고 이미지이며 실제 추천 구성과 다를 수 있습니다.
+            </p>
+            <div id="image-gallery-grid" class="gallery-grid">
+              <div class="loading-box">유사 이미지를 검색하고 있습니다...</div>
+            </div>
+          </div>
+
+          <!-- 결과 액션 버튼들 -->
+          <div class="result-actions">
+            <button id="btn-save-preset" class="btn btn-outline" type="button">현재 구성 프리셋 저장</button>
+            <button id="btn-share-config" class="btn btn-ghost" type="button">공유 링크 복사</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 부품 교체 모달 다이얼로그 -->
+  <dialog id="accessory-picker-modal" class="app-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">부품 교체</h3>
+        <button id="btn-close-modal" class="btn-close" type="button" aria-label="닫기">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">동일 슬롯에 장착 가능한 다른 호환(verified) 부품을 선택하세요.</p>
+        <div id="modal-accessory-options" class="modal-options-list"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 저장된 프리셋 목록 모달 -->
+  <dialog id="preset-modal" class="app-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>저장된 모딩 프리셋</h3>
+        <button id="btn-close-preset-modal" class="btn-close" type="button" aria-label="닫기">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="preset-list" class="preset-items-list">
+          <p class="text-muted">저장된 프리셋이 없습니다.</p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 메인 프론트엔드 모듈 로드 -->
+  <script type="module" src="./src/js/app.js"></script>
+</body>
+</html>
+
