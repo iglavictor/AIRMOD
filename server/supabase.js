@@ -78,6 +78,17 @@ export const MOCK_MODELS = [
     weight_grams: 750,
     image_url: '/public/assets/model-g17.jpg',
     is_active: true
+  },
+  {
+    id: 'mp5-aeg-004',
+    slug: 'sample-mp5-aeg',
+    name: '[샘플] H&K MP5A5 기관단총 전동건',
+    manufacturer: '가상 택티컬암즈',
+    platform: 'SMG',
+    price_krw: 290000,
+    weight_grams: 2100,
+    image_url: '/public/assets/model-mp5.jpg',
+    is_active: true
   }
 ];
 
@@ -313,7 +324,13 @@ export const MOCK_COMPATIBILITY = [
   // G17 핸드건 호환 부품들
   { modelId: 'g17-gbb-003', accessoryId: 'acc-pistol-reflex', status: 'verified' },
   { modelId: 'g17-gbb-003', accessoryId: 'acc-compensator-pistol', status: 'verified' },
-  { modelId: 'g17-gbb-003', accessoryId: 'acc-pistol-light', status: 'verified' }
+  { modelId: 'g17-gbb-003', accessoryId: 'acc-pistol-light', status: 'verified' },
+
+  // H&K MP5 호환 부품들
+  { modelId: 'mp5-aeg-004', accessoryId: 'acc-red-dot', status: 'verified' },
+  { modelId: 'mp5-aeg-004', accessoryId: 'acc-suppressor-short', status: 'verified' },
+  { modelId: 'mp5-aeg-004', accessoryId: 'acc-weapon-light', status: 'verified' },
+  { modelId: 'mp5-aeg-004', accessoryId: 'acc-tactical-sling', status: 'verified' }
 ];
 
 /**
@@ -333,6 +350,9 @@ function normalizeModelInfo(item) {
   } else if (text.includes('g17') || text.includes('글록') || text.includes('handgun') || text.includes('핸드건')) {
     imageUrl = '/public/assets/model-g17.jpg';
     name = '[샘플] 글록 17 (G17) 가스블로우백 핸드건';
+  } else if (text.includes('mp5')) {
+    imageUrl = '/public/assets/model-mp5.jpg';
+    name = '[샘플] H&K MP5A5 기관단총 전동건';
   }
 
   return { imageUrl, name };

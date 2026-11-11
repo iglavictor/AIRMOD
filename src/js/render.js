@@ -39,6 +39,8 @@ export function renderModelCards(container, models, selectedModelId, onSelect) {
       fallbackImg = '/public/assets/model-akm.jpg';
     } else if (slugOrPlatform.includes('g17') || slugOrPlatform.includes('handgun') || slugOrPlatform.includes('글록') || slugOrPlatform.includes('핸드건')) {
       fallbackImg = '/public/assets/model-g17.jpg';
+    } else if (slugOrPlatform.includes('mp5')) {
+      fallbackImg = '/public/assets/model-mp5.jpg';
     }
 
     const img = document.createElement('img');
