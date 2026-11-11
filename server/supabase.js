@@ -54,6 +54,7 @@ export const MOCK_MODELS = [
     platform: 'AR-15',
     price_krw: 350000,
     weight_grams: 2500,
+    length_mm: 780,
     image_url: '/public/assets/model-m4a1.jpg',
     is_active: true
   },
@@ -65,6 +66,7 @@ export const MOCK_MODELS = [
     platform: 'AK',
     price_krw: 320000,
     weight_grams: 3100,
+    length_mm: 900,
     image_url: '/public/assets/model-akm.jpg',
     is_active: true
   },
@@ -76,6 +78,7 @@ export const MOCK_MODELS = [
     platform: 'Handgun',
     price_krw: 180000,
     weight_grams: 750,
+    length_mm: 186,
     image_url: '/public/assets/model-g17.jpg',
     is_active: true
   },
@@ -87,6 +90,7 @@ export const MOCK_MODELS = [
     platform: 'SMG',
     price_krw: 290000,
     weight_grams: 2100,
+    length_mm: 550,
     image_url: '/public/assets/model-mp5.jpg',
     is_active: true
   }
