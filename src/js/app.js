@@ -8,6 +8,7 @@ import { state } from './state.js';
 import { formatCurrencyKRW } from './calculator.js';
 import { fetchModels, fetchAccessories, requestRecommendation, requestImages } from './api.js';
 import { renderModelCards, renderRecommendationResult, renderGalleryImages } from './render.js';
+import './guestbook.js';
 import { getSavedPresets, savePreset, deletePreset } from './storage.js';
 
 // DOM 요소 캐싱

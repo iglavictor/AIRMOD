@@ -522,7 +522,50 @@
   margin-top: 1rem;
 }
 
+/* 방명록 (Guestbook) 스타일 */
+.guestbook {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #fafafa;
+  border-top: 2px solid #e0e0e0;
+}
+.guestbook__title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.guestbook__form {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.guestbook__form input,
+.guestbook__form textarea {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+}
+.guestbook__form button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.guestbook__list {
+  list-style: none;
+  padding: 0;
+}
+.guestbook__item {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+.guestbook__name { font-weight: bold; }
+.guestbook__date { font-size: 0.85rem; color: #666; margin-left: 0.5rem; }
+.guestbook__msg { margin-top: 0.4rem; white-space: pre-wrap; }
+.guestbook__status { margin-top: 0.5rem; color: var(--color-accent); }
+
 .is-hidden {
+  display: none !important;
+}
   display: none !important;
 }
 

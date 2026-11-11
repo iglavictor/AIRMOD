@@ -240,6 +240,23 @@
     </div>
   </main>
 
+  <!-- 방명록·피드백 섹션 -->
+  <section id="guestbook" class="guestbook">
+    <h2 class="guestbook__title">방명록·피드백</h2>
+    <form id="guestbook-form" class="guestbook__form" autocomplete="off">
+      <label for="gb-name">이름</label>
+      <input type="text" id="gb-name" name="name" required minlength="2" placeholder="예) 홍길동">
+
+      <label for="gb-message">메시지</label>
+      <textarea id="gb-message" name="message" required minlength="5" placeholder="소감을 남겨 주세요…" rows="3"></textarea>
+
+      <button type="submit">작성하기</button>
+      <p id="gb-status" class="guestbook__status" hidden></p>
+    </form>
+    <ul id="guestbook-list" class="guestbook__list" aria-live="polite"></ul>
+  </section>
+
+
   <!-- 부품 교체 모달 다이얼로그 -->
   <dialog id="accessory-picker-modal" class="app-modal">
     <div class="modal-content">
