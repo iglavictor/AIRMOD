@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="100%" height="100%">
+  <defs>
+    <linearGradient id="peqBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917"/>
+      <stop offset="100%" stop-color="#292524"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="150" fill="url(#peqBg)"/>
+  <!-- PEQ-15 본체 박스 (탄색/블랙 콤보) -->
+  <rect x="45" y="55" width="110" height="42" rx="4" fill="#78716c"/>
+  <!-- 배터리 캡 / 다이얼 -->
+  <circle cx="65" cy="76" r="10" fill="#44403c"/>
+  <rect x="145" y="60" width="12" height="14" rx="2" fill="#1c1917"/>
+  <!-- 렌즈 조리개 구멍 & 블루 네온 포인트 -->
+  <circle cx="151" cy="85" r="4" fill="#38bdf8"/>
+  <circle cx="120" cy="76" r="6" fill="#0c0a09"/>
+  <!-- 상단 버튼 -->
+  <rect x="85" y="50" width="22" height="5" rx="2" fill="#0284c7"/>
+  <text x="100" y="125" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">AN/PEQ-15 DUMMY</text>
+</svg>

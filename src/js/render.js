@@ -58,9 +58,16 @@ export function renderModelCards(container, models, selectedModelId, onSelect) {
       }
     };
 
+    // 모델명 한국어 표준 치환 (AK-47 -> AKM 보정)
+    let displayName = model.name || '';
+    if (displayName.includes('AK-47') || displayName.includes('ak47') || displayName.includes('ak-47')) {
+      displayName = '[샘플] AKM 전동 에어소프트건';
+      model.name = displayName;
+    }
+
     const title = document.createElement('div');
     title.className = 'model-card-title';
-    title.textContent = model.name;
+    title.textContent = displayName;
 
     const meta = document.createElement('div');
     meta.className = 'model-card-meta';

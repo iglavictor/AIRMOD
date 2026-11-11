@@ -40,3 +40,4 @@ where m.slug = 'sample-mp5-aeg'
 on conflict (model_id, accessory_id) do update set
   status = excluded.status,
   evidence_note = excluded.evidence_note;
+

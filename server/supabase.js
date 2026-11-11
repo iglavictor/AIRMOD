@@ -282,11 +282,56 @@ export const MOCK_ACCESSORIES = [
     slot: 'stock',
     price_krw: 52000,
     weight_grams: 210,
-    image_url: 'https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=400&q=80',
+    image_url: '/public/assets/default-part.svg',
     is_active: true,
     environment_tags: ['indoor', 'outdoor'],
     style_tags: ['lightweight', 'appearance'],
     priority_tags: ['weight', 'appearance']
+  },
+  {
+    id: 'acc-lpvo-scope',
+    slug: 'sample-lpvo-scope',
+    name: '[샘플] 1-6배율 LPVO 택티컬 스코프 모형',
+    manufacturer: '가상 정밀옵틱스',
+    category: 'optic',
+    slot: 'optic',
+    price_krw: 138000,
+    weight_grams: 480,
+    image_url: '/public/assets/part-lpvo.svg',
+    is_active: true,
+    environment_tags: ['outdoor', 'shooting'],
+    style_tags: ['appearance', 'balanced'],
+    priority_tags: ['appearance', 'usability']
+  },
+  {
+    id: 'acc-peq15-dummy',
+    slug: 'sample-peq15-dummy',
+    name: '[샘플] AN/PEQ-15 더미 배터리케이스 표적기',
+    manufacturer: '가상 텍포스',
+    category: 'light',
+    slot: 'flashlight',
+    price_krw: 32000,
+    weight_grams: 110,
+    image_url: '/public/assets/part-peq15.svg',
+    is_active: true,
+    environment_tags: ['outdoor', 'cosplay'],
+    style_tags: ['appearance', 'budget'],
+    priority_tags: ['appearance', 'price']
+  },
+  {
+    id: 'acc-tracer-unit',
+    slug: 'sample-tracer-unit',
+    name: '[샘플] 14mm 역나사 컴팩트 발광 트레이서 유닛',
+    manufacturer: '가상 나이트비전',
+    category: 'muzzle',
+    slot: 'muzzle',
+    price_krw: 68000,
+    weight_grams: 95,
+    image_url: '/public/assets/part-tracer.svg',
+    is_active: true,
+    environment_tags: ['indoor', 'shooting'],
+    style_tags: ['appearance', 'balanced'],
+    priority_tags: ['appearance', 'usability']
   }
 ];
 
