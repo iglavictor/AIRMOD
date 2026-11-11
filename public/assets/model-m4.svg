@@ -16,7 +16,7 @@
   </defs>
 
   <!-- 배경 -->
-  <rect width="400" height="220" fill="url(#bg)"/>
+  <rect width="400" height="220" fill="url(#bg)"/> 
 
   <!-- 그리드 라인 -->
   <path d="M 0,55 L 400,55 M 0,110 L 400,110 M 0,165 L 400,165 M 100,0 L 100,220 M 200,0 L 200,220 M 300,0 L 300,220" 
